@@ -1,4 +1,4 @@
-
+import itertools
 """
 #zad 1
 for x in range(100, 1000):
@@ -38,10 +38,20 @@ dates = [{'d': 4, 'm': 10, 'y': 2000},
         {'d': 1, 'm': 2, 'y': 2001},
         {'d': 10, 'm': 9, 'y': 2000}]
 
-#skip bo mnie wkurwia samo patrzenie na to
+sorted_days = sorted(dates, key=lambda d: d['d'])
+sorted_months = sorted(sorted_days, key=lambda d: d['m'])
+sorted_dates = sorted(sorted_months, key=lambda d: d['y'])
+print(sorted_dates)
 
 #zad 5
 lista = [[1, 2, 3], ["Abba", "aff"], [-2, 4, 5]]
+
+flattened_list = list(itertools.chain(*lista))
+print(flattened_list)
+
+
+
+
 
 
 
