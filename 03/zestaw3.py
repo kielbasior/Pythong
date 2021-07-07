@@ -45,24 +45,34 @@ def ocena_hasla():
 def pass_encryption():
     haslo = input("Enter your password: ")
     code = ""
+    ces1 = ""
+    ces3 = ""
+    for letter in haslo:
+        ces1 += str(ord(letter)+3) + " "
+    ces2 = ces1.split()
+    for letter in ces2:
+        ces3 += chr(int(letter))
+
     for letter in haslo:
         code += str(ord(letter)) + " "
     encrypted_pass = code[::-1]
     print("Encrypted password: " + encrypted_pass)
+    print("Secret code that you'll need to decrypt your password: " + ces3)
 
 def pass_decryption():
-    while True:
-        try:
-            code = input("Enter your code: ")
-            code = code[::-1]
+        secret_code = input("Enter the secret sentence: ")
+        unicode = ""
+        for x in secret_code:
+            unicode += str(ord(x)-3) + " "
+        code = input("Enter your code: ")
+        code = code[::-1]
+        if str(unicode.strip()) == str(code):
             code_as_list = code.split()
             password = ""
             for x in code_as_list:
                 password += chr(int(x))
             print("Decrypted password: " + password)
-            break
-        except OverflowError:
-            print("You have missed whitespaces. Enter the code again.")
-
+        else:
+              print("Secret code doesn't match with password that you've provided.")
 
 menu()
